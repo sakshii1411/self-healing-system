@@ -1,161 +1,148 @@
 # 🚀 Self-Healing Distributed System with ML Anomaly Detection
 
-A **production-inspired self-monitoring and self-healing distributed system** built using **FastAPI, Docker, Prometheus, Grafana, and Machine Learning (Isolation Forest)**.
+A production-inspired distributed monitoring and self-healing system built using **FastAPI, Docker, Prometheus, Grafana, and Machine Learning (Isolation Forest).**
 
-This system continuously monitors its own behavior, detects anomalies in real-time, and automatically takes corrective actions — simulating real-world DevOps + SRE workflows.
-
----
-
-## ✨ Key Features
-
-### 🔹 Microservices Architecture
-- Two independent services:
-  - `user-service`
-  - `order-service`
-- Real inter-service communication via HTTP
-
-### 🔹 Observability (Golden Signals)
-- Structured JSON logging
-- Prometheus metrics:
-  - Request rate
-  - Error rate
-  - Latency
-  - Resource usage
-
-### 🔹 Monitoring Stack
-- **Prometheus** → Metrics collection
-- **Grafana** → Visualization dashboards
-
-### 🔹 ML-Based Anomaly Detection
-- Isolation Forest trained on **live system metrics**
-- Detects:
-  - High error rates
-  - Latency spikes
-  - Traffic anomalies
-  - CPU usage anomalies
-
-### 🔹 Intelligent Decision Engine
-- Consumes ML output
-- Classifies system state:
-  - NORMAL
-  - ANOMALY_DETECTED
-
-### 🔹 Automated Response Engine
-- Executes corrective actions:
-  - Restart services (simulated)
-  - Log incidents
-  - Trigger recovery workflows
-
-### 🔹 Fully Containerized
-- Docker + Docker Compose
-- Easy local deployment
-- Production-like environment
+The system continuously monitors live metrics, detects anomalies in real time, and simulates automated recovery workflows similar to modern DevOps + SRE environments.
 
 ---
 
-## 🏗️ Architecture
+# ✨ Features
 
-
-User & Order Services
-↓
-Logs + Metrics
-↓
-Prometheus
-↓
-Grafana Dashboard
-↓
-ML Anomaly Detector (Isolation Forest)
-↓
-Decision Engine
-↓
-Response Engine
-
+* Microservices architecture (`user-service` & `order-service`)
+* Real-time monitoring with Prometheus
+* Grafana dashboards for visualization
+* ML-based anomaly detection using Isolation Forest
+* Automated decision & response engines
+* Structured JSON logging
+* Dockerized deployment with Docker Compose
+* Simulated self-healing workflows
 
 ---
 
-## 🛠️ Tech Stack
+# 🏗️ Architecture
 
-| Category | Tools |
-|--------|------|
-| Backend | FastAPI (Python) |
-| ML | scikit-learn (Isolation Forest) |
-| Monitoring | Prometheus |
-| Visualization | Grafana |
-| Containerization | Docker, Docker Compose |
-| Automation | Rule-based + ML-driven |
+```text id="1l7m7j"
+Services → Metrics → Prometheus → Grafana
+                         ↓
+              ML Anomaly Detector
+                         ↓
+                 Decision Engine
+                         ↓
+                 Response Engine
+```
 
 ---
 
-## 🚀 How to Run
+# 🛠️ Tech Stack
 
-```bash
-# Clone repository
-git clone <your-repo-url>
-cd self-healing-system
+| Category         | Tools                           |
+| ---------------- | ------------------------------- |
+| Backend          | FastAPI, Python                 |
+| ML               | Scikit-Learn (Isolation Forest) |
+| Monitoring       | Prometheus                      |
+| Visualization    | Grafana                         |
+| Containerization | Docker, Docker Compose          |
 
-# Start all services
-docker compose up --build -d
-🌐 Services & Endpoints
-Service	URL
-User Service	http://localhost:8001
+---
 
-Order Service	http://localhost:8002
+# 📂 Project Structure
 
-Decision Engine	http://localhost:8003/decide
-
-Response Engine	http://localhost:8004/act
-
-ML Detector	http://localhost:8005/train
-
-Prometheus	http://localhost:9091
-
-Grafana	http://localhost:3001
- (admin/admin)
-🔑 Key API Endpoints
-GET /orders      # Triggers inter-service calls
-GET /metrics     # Prometheus metrics
-GET /detect      # ML anomaly detection
-GET /decide      # Decision engine output
-GET /act         # Automated response
-📁 Project Structure
+```bash id="7pwk6n"
 self-healing-system/
+│
 ├── services/
 │   ├── user-service/
 │   ├── order-service/
+│   ├── ml-anomaly-detector/
 │   ├── decision-engine/
-│   ├── response-engine/
-│   └── ml-anomaly-detector/
-├── prometheus.yml
+│   └── response-engine/
+│
 ├── docker-compose.yml
-├── logs/
-├── grafana_data/
+├── prometheus.yml
 └── README.md
-💡 Why This Project Stands Out
-
-✅ Uses real system-generated data (not static datasets)
-✅ Implements end-to-end observability pipeline
-✅ Integrates ML with DevOps workflows
-✅ Demonstrates self-healing architecture (closed loop)
-✅ Simulates production-grade distributed system behavior
-
-🔮 Future Enhancements
-Kafka for real-time log streaming
-Kubernetes deployment (auto-scaling + resilience)
-Advanced anomaly detection models (LSTM, Autoencoders)
-Docker SDK integration for real container restarts
-Alerting system (Slack / Email / PagerDuty)
-📊 Grafana Dashboard
-<img width="1519" height="808" alt="Screenshot 2026-03-31 235156" src="https://github.com/user-attachments/assets/924aab18-2226-4787-9461-a41d498e1d69" />
-
-❤️ Built For
-DevOps & SRE learning
-System Design practice
-ML in production use-cases
-Resume & portfolio projects
-👨‍💻 Author
-
-Kunal Shetiya
-
-⭐ If you found this useful, give it a star!
+```
 
 ---
+
+# 🚀 Run Locally
+
+```bash id="vz3vib"
+git clone https://github.com/sakshii1411/self-healing-system.git
+
+cd self-healing-system
+
+docker compose up --build -d
+```
+
+---
+
+# 🌐 Services
+
+| Service         | URL                                                          |
+| --------------- | ------------------------------------------------------------ |
+| User Service    | [http://localhost:8001](http://localhost:8001)               |
+| Order Service   | [http://localhost:8002](http://localhost:8002)               |
+| Decision Engine | [http://localhost:8003/decide](http://localhost:8003/decide) |
+| Response Engine | [http://localhost:8004/act](http://localhost:8004/act)       |
+| ML Detector     | [http://localhost:8005/train](http://localhost:8005/train)   |
+| Prometheus      | [http://localhost:9091](http://localhost:9091)               |
+| Grafana         | [http://localhost:3001](http://localhost:3001)               |
+
+### Grafana Login
+
+```text id="s5xihd"
+Username: admin
+Password: admin
+```
+
+---
+
+# 🔑 Important Endpoints
+
+```http id="nqlj7j"
+GET /orders
+GET /metrics
+GET /train
+GET /detect
+GET /decide
+GET /act
+```
+
+---
+
+# 📊 Example Workflow
+
+```text id="2m7j3t"
+1. Services generate metrics
+2. Prometheus collects telemetry
+3. ML model detects anomalies
+4. Decision engine classifies system state
+5. Response engine simulates recovery actions
+```
+
+---
+
+# 💡 Highlights
+
+✅ Real-time observability pipeline
+✅ ML integrated with DevOps workflows
+✅ Production-style monitoring setup
+✅ Self-healing system simulation
+✅ End-to-end distributed architecture
+
+---
+
+# 🔮 Future Enhancements
+
+* Kubernetes deployment
+* Kafka integration
+* Auto-scaling
+* Real container restarts
+* Slack / Email alerting
+* Advanced deep learning anomaly detection
+
+---
+
+# 👨‍💻 Author
+
+## Sakshi Awasthi
